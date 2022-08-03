@@ -36,6 +36,7 @@
             this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,22 +77,30 @@
             // songToolStripMenuItem
             // 
             this.songToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addSongToolStripMenuItem,
             this.listSongToolStripMenuItem});
             this.songToolStripMenuItem.Name = "songToolStripMenuItem";
             this.songToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.songToolStripMenuItem.Text = "Song";
-            this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
+//            this.songToolStripMenuItem.Click += new System.EventHandler(this.songToolStripMenuItem_Click);
             // 
             // listSongToolStripMenuItem
             // 
             this.listSongToolStripMenuItem.Name = "listSongToolStripMenuItem";
-            this.listSongToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
+            this.listSongToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.listSongToolStripMenuItem.Text = "List Song";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // addSongToolStripMenuItem
+            // 
+            this.addSongToolStripMenuItem.Name = "addSongToolStripMenuItem";
+            this.addSongToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.addSongToolStripMenuItem.Text = "Add Song";
+            this.addSongToolStripMenuItem.Click += new System.EventHandler(this.addSongToolStripMenuItem_Click);
             // 
             // FrmAdminHome
             // 
@@ -119,5 +128,6 @@
         private System.Windows.Forms.ToolStripMenuItem songToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listSongToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem addSongToolStripMenuItem;
     }
 }

@@ -64,7 +64,7 @@ namespace StunningDisco
         private void btn_submit_Click(object sender, EventArgs e)
         {
             addNewArtist();
-            clearTextBoxes();
+            clearTextBoxes();            
         }
 
         private void FrmAddArtist_Load(object sender, EventArgs e)

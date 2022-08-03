@@ -32,7 +32,7 @@ namespace StunningDisco
             openMdiChild(frmAddArtist);
         }
 
-        private void songToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAddSong frmAddSong = new FrmAddSong();
             openMdiChild(frmAddSong);

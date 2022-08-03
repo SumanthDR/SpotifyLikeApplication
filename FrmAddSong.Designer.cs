@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_reset = new System.Windows.Forms.Button();
             this.btn_submit = new System.Windows.Forms.Button();
-            this.txtbx_userName = new System.Windows.Forms.TextBox();
+            this.txtbx_songName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,20 +38,20 @@
             this.chkLstArtist = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_addArtist = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_upload = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_DOR = new System.Windows.Forms.DateTimePicker();
+            this.btn_reload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button2
+            // btn_reset
             // 
-            this.button2.Location = new System.Drawing.Point(317, 468);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Reset";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_reset.Location = new System.Drawing.Point(317, 468);
+            this.btn_reset.Name = "btn_reset";
+            this.btn_reset.Size = new System.Drawing.Size(75, 23);
+            this.btn_reset.TabIndex = 27;
+            this.btn_reset.Text = "Reset";
+            this.btn_reset.UseVisualStyleBackColor = true;
             // 
             // btn_submit
             // 
@@ -61,14 +61,15 @@
             this.btn_submit.TabIndex = 26;
             this.btn_submit.Text = "Submit";
             this.btn_submit.UseVisualStyleBackColor = true;
+            this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
             // 
-            // txtbx_userName
+            // txtbx_songName
             // 
-            this.txtbx_userName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbx_userName.Location = new System.Drawing.Point(215, 145);
-            this.txtbx_userName.Name = "txtbx_userName";
-            this.txtbx_userName.Size = new System.Drawing.Size(273, 24);
-            this.txtbx_userName.TabIndex = 20;
+            this.txtbx_songName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbx_songName.Location = new System.Drawing.Point(215, 145);
+            this.txtbx_songName.Name = "txtbx_songName";
+            this.txtbx_songName.Size = new System.Drawing.Size(273, 24);
+            this.txtbx_songName.TabIndex = 20;
             // 
             // label3
             // 
@@ -137,63 +138,69 @@
             this.btn_addArtist.TabIndex = 30;
             this.btn_addArtist.Text = "Add";
             this.btn_addArtist.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(215, 404);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(273, 24);
-            this.textBox1.TabIndex = 32;
+            this.btn_addArtist.Click += new System.EventHandler(this.btn_addArtist_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(95, 410);
+            this.label6.Location = new System.Drawing.Point(117, 392);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 18);
+            this.label6.Size = new System.Drawing.Size(92, 18);
             this.label6.TabIndex = 31;
-            this.label6.Text = "Date of Release";
+            this.label6.Text = "Cover Photo";
             // 
             // btn_upload
             // 
-            this.btn_upload.Location = new System.Drawing.Point(494, 405);
+            this.btn_upload.Location = new System.Drawing.Point(215, 392);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(75, 23);
             this.btn_upload.TabIndex = 33;
             this.btn_upload.Text = "Upload";
             this.btn_upload.UseVisualStyleBackColor = true;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
             // 
-            // dateTimePicker1
+            // dateTimePicker_DOR
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(215, 198);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(273, 24);
-            this.dateTimePicker1.TabIndex = 34;
+            this.dateTimePicker_DOR.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker_DOR.Location = new System.Drawing.Point(215, 198);
+            this.dateTimePicker_DOR.Name = "dateTimePicker_DOR";
+            this.dateTimePicker_DOR.Size = new System.Drawing.Size(273, 24);
+            this.dateTimePicker_DOR.TabIndex = 34;
+            // 
+            // btn_reload
+            // 
+            this.btn_reload.Location = new System.Drawing.Point(494, 319);
+            this.btn_reload.Name = "btn_reload";
+            this.btn_reload.Size = new System.Drawing.Size(75, 23);
+            this.btn_reload.TabIndex = 35;
+            this.btn_reload.Text = "Reload";
+            this.btn_reload.UseVisualStyleBackColor = true;
+            this.btn_reload.Click += new System.EventHandler(this.btn_reload_Click);
             // 
             // FrmAddSong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 514);
-            this.Controls.Add(this.dateTimePicker1);
+            this.ClientSize = new System.Drawing.Size(611, 514);
+            this.Controls.Add(this.btn_reload);
+            this.Controls.Add(this.dateTimePicker_DOR);
             this.Controls.Add(this.btn_upload);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btn_addArtist);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.chkLstArtist);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.btn_submit);
-            this.Controls.Add(this.txtbx_userName);
+            this.Controls.Add(this.txtbx_songName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmAddSong";
-            this.Text = "FrmAddSong";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmAddSong_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,9 +209,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Button btn_submit;
-        private System.Windows.Forms.TextBox txtbx_userName;
+        private System.Windows.Forms.TextBox txtbx_songName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
@@ -212,9 +219,9 @@
         private System.Windows.Forms.CheckedListBox chkLstArtist;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_addArtist;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_upload;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_DOR;
+        private System.Windows.Forms.Button btn_reload;
     }
 }
