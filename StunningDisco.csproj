@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAddArtist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddArtist.Designer.cs">
+      <DependentUpon>FrmAddArtist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAddSong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAddSong.Designer.cs">
+      <DependentUpon>FrmAddSong.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAdminHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +85,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAddArtist.resx">
+      <DependentUpon>FrmAddArtist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAddSong.resx">
+      <DependentUpon>FrmAddSong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAdminHome.resx">
+      <DependentUpon>FrmAdminHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>

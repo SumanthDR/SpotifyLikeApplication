@@ -39,19 +39,19 @@ namespace StunningDisco
         }
 
         private void btn_login_Click(object sender, EventArgs e)
-        {            
-            FrmAdminHome frmAdminHome = new FrmAdminHome();
-         
+        {
             // Check for Admin Login only
             if ((txtbx_userId.Text == "admin") && (txtbx_password.Text == "admin"))
-            {                
+            {
+                FrmAdminHome frmAdminHome = new FrmAdminHome();
                 this.Hide();
                 frmAdminHome.Show();
             }
             else if (checkUserCredentials() == 1)
             {
+                FrmUserHome frmUserHome = new FrmUserHome();
                 this.Hide();
-                frmAdminHome.Show();
+                frmUserHome.Show();
             }
             else
                 MessageBox.Show("Invalid User ID or Password");
