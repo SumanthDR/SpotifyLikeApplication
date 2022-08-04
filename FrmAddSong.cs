@@ -62,7 +62,8 @@ namespace StunningDisco
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Img files (*.jpg)|*.jpeg|All files (*.png)|*.*";
+                openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+                //openFileDialog.Filter = "Img files (*.jpg)|*.jpeg|All files (*.png)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 

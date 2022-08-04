@@ -47,6 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dbStunningDiscoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStunningDiscoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbStunningDiscoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStunningDiscoDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbStunningDiscoDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStunningDiscoDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbStunningDiscoDataSetDGV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStunningDiscoDataSetDGV.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddArtist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +132,50 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="dbStunningDiscoDataSet.xsc">
+      <DependentUpon>dbStunningDiscoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbStunningDiscoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbStunningDiscoDataSet.xss">
+      <DependentUpon>dbStunningDiscoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSet1.xsc">
+      <DependentUpon>dbStunningDiscoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbStunningDiscoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbStunningDiscoDataSet1.xss">
+      <DependentUpon>dbStunningDiscoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSet2.xsc">
+      <DependentUpon>dbStunningDiscoDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbStunningDiscoDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbStunningDiscoDataSet2.xss">
+      <DependentUpon>dbStunningDiscoDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSetDGV.xsc">
+      <DependentUpon>dbStunningDiscoDataSetDGV.xsd</DependentUpon>
+    </None>
+    <None Include="dbStunningDiscoDataSetDGV.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbStunningDiscoDataSetDGV.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbStunningDiscoDataSetDGV.xss">
+      <DependentUpon>dbStunningDiscoDataSetDGV.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
