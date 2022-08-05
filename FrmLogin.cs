@@ -10,10 +10,12 @@ namespace StunningDisco
     {
         string message = String.Empty;
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStr"].ConnectionString;
+
         public FrmLogin()
         {
             InitializeComponent();
         }
+
         private int checkUserCredentials()
         {
             SqlConnection con = new SqlConnection(connectionString);

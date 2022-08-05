@@ -37,5 +37,11 @@ namespace StunningDisco
             FrmAddSong frmAddSong = new FrmAddSong();
             openMdiChild(frmAddSong);
         }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmUser frmUser = new FrmUser();
+            openMdiChild(frmUser);
+        }
     }
 }
