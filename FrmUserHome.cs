@@ -11,19 +11,20 @@ namespace StunningDisco
     {
         string message = string.Empty;
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStr"].ConnectionString;
-        
+        ComboBox combo;
+        int rate = -1;
+
         DataGridViewComboBoxColumn comboBox = new DataGridViewComboBoxColumn();
 
         public FrmUserHome()
         {
             InitializeComponent();
-        }
+        }        
         private void saveRateSongUser()
-        {
-            MessageBox.Show("Line 21");
+        {            
             SqlConnection con = new SqlConnection(connectionString);
             try
-            {
+            {                  
                 foreach (DataGridViewRow dr in dataGridView1.Rows)
                 {
                     SqlCommand cmd = new SqlCommand("sp_InsertUserRating", con)
@@ -34,15 +35,13 @@ namespace StunningDisco
                     {
                         cmd.Parameters.AddWithValue("@userIdRate", FrmLogin.userId);
                         cmd.Parameters.AddWithValue("@songIdRate", dr.Cells["songId"].Value ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@rate", dr.Cells["cmbbx_rate"].Value ?? DBNull.Value);                        
+                        cmd.Parameters.AddWithValue("@rate", dr.Cells["cmbbx_rate"].Value ?? DBNull.Value);
                         con.Open();
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Saved");
-                        con.Close();                        
+                       // MessageBox.Show("Saved");
+                        con.Close();
                     }                    
-                }
-                dataGridView1.DataSource = null;
-                MessageBox.Show(FrmLogin.userId);
+                }                
             }
             catch (Exception ex)
             {
@@ -74,17 +73,146 @@ namespace StunningDisco
 
         private void FrmUserHome_Load(object sender, EventArgs e)
         {   
-            loadGridView();
-            removeDuplicateRows();                        
+            //loadGridView();
+            //removeDuplicateRows();                        
         }
-
-        private void loadGridView()
-        {
+        private void loadGridViewTopArtist()
+        {            
             SqlConnection con = new SqlConnection(connectionString);
             try
             {
-                SqlCommand cmd = new SqlCommand("sp_RetrieveSongs", con);
+                SqlCommand cmd = new SqlCommand("sp_RetrieveTopArtists", con);                
+                con.Open();
+                using (SqlDataAdapter adt = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+
+                    adt.Fill(dt);
+
+                    combo = null;
+                    // Clear binding
+                    dataGridView1.DataSource = null;
+
+
+                    //Set AutoGenerateColumns False
+                    dataGridView1.AutoGenerateColumns = false;
+
+                    //Set Columns Count
+                    dataGridView1.ColumnCount = 5;
+
+                    dataGridView1.Columns[1].Name = "artistName";
+                    dataGridView1.Columns[1].HeaderText = "Artist Name";
+                    dataGridView1.Columns[1].DataPropertyName = "artistName";
+                    dataGridView1.Columns[1].Width = 150;
+                    dataGridView1.Columns[1].ReadOnly = true;
+
+                    dataGridView1.Columns[2].Name = "artistDOB";
+                    dataGridView1.Columns[2].HeaderText = "Arist DOB";
+                    dataGridView1.Columns[2].DataPropertyName = "artistDOB";
+                    dataGridView1.Columns[2].Width = 150;
+                    dataGridView1.Columns[2].ReadOnly = true;
+
+                    dataGridView1.Columns[3].Name = "songsArtist";
+                    dataGridView1.Columns[3].HeaderText = "Songs";
+                    dataGridView1.Columns[3].DataPropertyName = "songsArtist";
+                    dataGridView1.Columns[3].Width = 130;
+                    dataGridView1.Columns[3].ReadOnly = true;
+
+                    dataGridView1.Columns[4].Name = "artistId";
+                    dataGridView1.Columns[4].DataPropertyName = "artistId";
+                    dataGridView1.Columns[4].Visible = false;
+
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong please try again !! \n\n" + ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        private void loadGridViewTopSongs()
+        {
+            int num = -1;
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                SqlCommand cmd = new SqlCommand("sp_RetrieveTopSongs", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                if(cmbbx_topSongs.Text == "My Top 10 Songs")
+                    cmd.Parameters.AddWithValue("@para", FrmLogin.userId);
+                else if (cmbbx_topSongs.Text == "Trending Top 10 Songs")
+                    cmd.Parameters.AddWithValue("@para", num);
+                con.Open();
+                using (SqlDataAdapter adt = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+
+                    adt.Fill(dt);
+
+                    combo = null;
+                    // Clear binding
+                    dataGridView1.DataSource = null;
+
+                    
+                    //Set AutoGenerateColumns False
+                    dataGridView1.AutoGenerateColumns = false;
+
+                    //Set Columns Count
+                    dataGridView1.ColumnCount = 6;   
+
+                    dataGridView1.Columns[1].Name = "songName";
+                    dataGridView1.Columns[1].HeaderText = "Song Name";
+                    dataGridView1.Columns[1].DataPropertyName = "songName";
+                    dataGridView1.Columns[1].Width = 150;
+                    dataGridView1.Columns[1].ReadOnly = true;
+
+                    dataGridView1.Columns[2].Name = "songDOR";
+                    dataGridView1.Columns[2].HeaderText = "Date of Release";
+                    dataGridView1.Columns[2].DataPropertyName = "songDOR";
+                    dataGridView1.Columns[2].Width = 130;
+                    dataGridView1.Columns[2].ReadOnly = true;
+
+                    dataGridView1.Columns[3].Name = "ARTISTNAME";
+                    dataGridView1.Columns[3].HeaderText = "Artists";
+                    dataGridView1.Columns[3].DataPropertyName = "ARTISTNAME";
+                    dataGridView1.Columns[3].Width = 180;
+                    dataGridView1.Columns[3].ReadOnly = true;
+
+                    dataGridView1.Columns[4].Name = "rate";
+                    dataGridView1.Columns[4].HeaderText = "Rating";
+                    dataGridView1.Columns[4].DataPropertyName = "rate";
+                    dataGridView1.Columns[4].Width = 80;
+                    dataGridView1.Columns[4].ReadOnly = true;
+
+                    dataGridView1.Columns[5].Name = "songId";
+                    dataGridView1.Columns[5].DataPropertyName = "songId";
+                    dataGridView1.Columns[5].Visible = false;
+                
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong please try again !! \n\n" + ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        private void loadGridView(string prc)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(prc, con);
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (prc == "sp_SearchSongs")
+                    cmd.Parameters.AddWithValue("@para", txtbx_search.Text);
                 con.Open();
                 using (SqlDataAdapter adt = new SqlDataAdapter(cmd))
                 {
@@ -144,8 +272,9 @@ namespace StunningDisco
                     comboBox.Items.Add("3");
                     comboBox.Items.Add("4");
                     comboBox.Items.Add("5");
-                    comboBox.Name = "cmbbx_rate";                    
+                    comboBox.Name = "cmbbx_rate";                                       
                     
+
                     dataGridView1.DataSource = dt;
                 }
             }
@@ -163,13 +292,59 @@ namespace StunningDisco
         {
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if ((e.ColumnIndex == 6) && (comboBox.is))
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {            
+            combo = e.Control as ComboBox;
+            if (combo != null)
             {
-                saveRateSongUser();
+                combo.SelectedIndexChanged -= new EventHandler(combo_SelectedIndexChanged);
+                combo.SelectedIndexChanged += combo_SelectedIndexChanged;
             }
-            
+            else
+                rate = -1;
+        }
+
+        private void combo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = (sender as ComboBox).SelectedItem.ToString();            
+            rate = Convert.ToInt32(selected);            
+        }
+
+        private void btn_rateSave_Click(object sender, EventArgs e)
+        {
+            saveRateSongUser();
+        }
+
+        private void btn_load_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            loadGridView("sp_RetrieveSongs");
+            removeDuplicateRows();
+        }
+
+        private void cmbbx_topSongs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            loadGridViewTopSongs();
+            removeDuplicateRows();
+        }
+
+        private void cmbbx_topArtist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            loadGridViewTopArtist();
+        }
+        
+        private void txtbx_search_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.Columns.Clear();
+            loadGridView("sp_SearchSongs");
+            removeDuplicateRows();
         }
     }
 }

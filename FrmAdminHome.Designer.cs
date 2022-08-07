@@ -36,8 +36,8 @@
             this.songToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,8 +73,9 @@
             // viewArtistToolStripMenuItem
             // 
             this.viewArtistToolStripMenuItem.Name = "viewArtistToolStripMenuItem";
-            this.viewArtistToolStripMenuItem.Size = new System.Drawing.Size(149, 24);
+            this.viewArtistToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.viewArtistToolStripMenuItem.Text = "View Artist";
+            this.viewArtistToolStripMenuItem.Click += new System.EventHandler(this.viewArtistToolStripMenuItem_Click);
             // 
             // songToolStripMenuItem
             // 
@@ -97,11 +98,7 @@
             this.listSongToolStripMenuItem.Name = "listSongToolStripMenuItem";
             this.listSongToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.listSongToolStripMenuItem.Text = "List Song";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.listSongToolStripMenuItem.Click += new System.EventHandler(this.listSongToolStripMenuItem_Click);
             // 
             // userToolStripMenuItem
             // 
@@ -109,6 +106,11 @@
             this.userToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // FrmAdminHome
             // 
