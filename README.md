@@ -8,6 +8,7 @@ To Run The Application
 -> Double click on "StunningDisco.sln"
 -> Open "App.config"
 -> Change Connection String "Data Source" to your Server Name
+-> Open MS SQL Server and execute "script.sql"
 -> Click on Start
 -> For Admin Role
 User ID : admin
