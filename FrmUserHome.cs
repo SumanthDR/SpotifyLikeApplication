@@ -11,44 +11,45 @@ namespace StunningDisco
     {
         string message = string.Empty;
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStr"].ConnectionString;
+        
+        DataGridViewComboBoxColumn comboBox = new DataGridViewComboBoxColumn();
 
         public FrmUserHome()
         {
             InitializeComponent();
         }
-
-        //private void saveUserRatings(String prc)
-        //{
-        //    SqlConnection con = new SqlConnection(connectionString);
-        //    try
-        //    {
-        //        foreach (DataGridViewRow dr in dataGridView1.Rows)
-        //        {
-        //            SqlCommand cmd = new SqlCommand(prc, con)
-        //            {
-        //                CommandType = CommandType.StoredProcedure
-        //            };
-        //            cmd.Parameters.AddWithValue("@Course_Id", Frm_CourseView.crs_id);
-        //            cmd.Parameters.AddWithValue("@Course_Id", Frm_CourseView.crs_id);
-        //            if (dr.IsNewRow) continue;
-        //            {
-        //                cmd.Parameters.AddWithValue("@card_id", dr.Cells["Card_Id"].Value ?? DBNull.Value);                        
-        //                con.Open();
-        //                cmd.ExecuteNonQuery();
-        //                con.Close();             
-        //            }
-        //        }
-        //        dataGridView1.DataSource = null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Something went wrong, Please try again !! \n\n" + ex);
-        //    }
-        //    finally
-        //    {
-        //        con.Close();
-        //    }
-        //}
+        private void saveRateSongUser()
+        {
+            MessageBox.Show("Line 21");
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                foreach (DataGridViewRow dr in dataGridView1.Rows)
+                {
+                    SqlCommand cmd = new SqlCommand("sp_InsertUserRating", con)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    if (dr.IsNewRow) continue;
+                    {
+                        cmd.Parameters.AddWithValue("@userIdRate", FrmLogin.userId);
+                        cmd.Parameters.AddWithValue("@songIdRate", dr.Cells["songId"].Value ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@rate", dr.Cells["cmbbx_rate"].Value ?? DBNull.Value);                        
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Saved");
+                        con.Close();                        
+                    }                    
+                }
+                dataGridView1.DataSource = null;
+                MessageBox.Show(FrmLogin.userId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong, Please try again !! \n\n" + ex);
+            }
+            finally { con.Close(); }
+        }
         private void removeDuplicateRows()
         {
             List<string> list = new List<string>();
@@ -74,7 +75,7 @@ namespace StunningDisco
         private void FrmUserHome_Load(object sender, EventArgs e)
         {   
             loadGridView();
-            removeDuplicateRows();
+            removeDuplicateRows();                        
         }
 
         private void loadGridView()
@@ -134,15 +135,17 @@ namespace StunningDisco
 
                     ///     CREATES BUTTON IN DATAGRID VIEW  /////////////////                    
 
-                    DataGridViewComboBoxColumn comboBox = new DataGridViewComboBoxColumn();
+//                    DataGridViewComboBoxColumn comboBox = new DataGridViewComboBoxColumn();
                     dataGridView1.Columns.Add(comboBox);
                     comboBox.HeaderText = "Rating";
+                    
                     comboBox.Items.Add("1");
                     comboBox.Items.Add("2");
                     comboBox.Items.Add("3");
                     comboBox.Items.Add("4");
                     comboBox.Items.Add("5");
-                    comboBox.Name = "cmbbx_rate";
+                    comboBox.Name = "cmbbx_rate";                    
+                    
                     dataGridView1.DataSource = dt;
                 }
             }
@@ -160,10 +163,13 @@ namespace StunningDisco
         {
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //if ((e.ColumnIndex == 6) && (comboBox.is))
+            {
+                saveRateSongUser();
+            }
+            
         }
     }
 }

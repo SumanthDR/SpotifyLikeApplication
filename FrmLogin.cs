@@ -10,11 +10,35 @@ namespace StunningDisco
     {
         string message = String.Empty;
         string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStr"].ConnectionString;
+        public static string userId = String.Empty;
+
 
         public FrmLogin()
         {
             InitializeComponent();
         }
+        //private void getUserId()
+        //{
+        //    SqlConnection con = new SqlConnection(connectionString);
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand("sp_checkUser", con);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        con.Open();
+        //        cmd.Parameters.AddWithValue("@userEmail", txtbx_userId.Text.Trim());
+        //        cmd.Parameters.AddWithValue("@userPassword", txtbx_password.Text);
+        //        using (SqlDataReader dr = cmd.ExecuteReader())
+        //        {
+        //            if (dr.Read())
+        //            {
+        //                FrmLogin.userId = (dr["userId"].ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    { MessageBox.Show("" + ex); }
+        //    finally { con.Close(); }
+        //}
 
         private int checkUserCredentials()
         {
@@ -29,7 +53,13 @@ namespace StunningDisco
                 cmd.Parameters.Add("@ERROR", SqlDbType.Char, 500);
                 cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
                 con.Open();
-                cmd.ExecuteNonQuery();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        FrmLogin.userId = (dr["userId"].ToString());
+                    }
+                }
                 message = (string)cmd.Parameters["@ERROR"].Value;                
             }
             catch (SqlException ex)
@@ -50,7 +80,7 @@ namespace StunningDisco
                 frmAdminHome.Show();
             }
             else if (checkUserCredentials() == 1)
-            {
+            {                
                 FrmUserHome frmUserHome = new FrmUserHome();
                 this.Hide();
                 frmUserHome.Show();
